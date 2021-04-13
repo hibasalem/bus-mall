@@ -6,41 +6,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Bus mall</title>
+    <title>Bus-mall</title>
 
-    <!-- <link rel="stylesheet" href="css/reset.css"> -->
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@500&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
     <header>
-        <h1>Bus mall</h1>
+        <h1>Bus-mall</h1>
     </header>
 
     <main>
 
-        <p>hello! we will show you a variation of photos , 3 each time , you can vote for one of them <br> you will have
-            25 attempts
+        <p>hello! we will show you a variation of photos , 3 each time , you can vote for one of them <br> you will chooes 25 time
         </p>
 
         <div id="images">
 
-            <img id="left" src="" alt="left" height="300">
-            <img id="center" src="" alt="center" height="300" >
-            <img id="right" src="" alt="right" height="300">
+            <img id="left" src="" alt="left" height="250">
+            <img id="center" src="" alt="center" height="250">
+            <img id="right" src="" alt="right" height="250">
 
         </div>
 
         <div id="button"></div>
-
-        <!-- <button id="button" > show results </button> -->
         <ul id="results"></ul>
+
+        <div>
+            <canvas id="myChart" width="500px"></canvas>-
+        </div>
 
     </main>
     <footer>
 
     </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script src="js/app.js"></script>
 

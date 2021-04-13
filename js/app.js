@@ -11,12 +11,20 @@ let centerIndex = 0;
 let rightIndex = 0;
 let photos = [];
 
+let nameChart = [];
+let votesChart = [];
+let shownChart = [];
+
 function Photo(name, source) {
     this.name = name;
     this.source = source;
     this.showsCounter = 0;
     this.votes = 0;
+
     photos.push(this);
+
+    // push names for the chart
+    nameChart.push(this.name);
 }
 
 new Photo('bag', 'img/bag.jpg');
@@ -44,14 +52,18 @@ function RandIndex() {
     return Math.floor(Math.random() * photos.length);
 }
 // showing  on the photos 
+
+let tempArry = [];
+
 function renderImg() {
 
     leftIndex = RandIndex();
     centerIndex = RandIndex();
     rightIndex = RandIndex();
 
-    while (leftIndex === centerIndex || leftIndex === rightIndex || centerIndex === rightIndex) {
+    while (leftIndex === centerIndex || leftIndex === rightIndex || centerIndex === rightIndex || tempArry.includes(leftIndex) || tempArry.includes(centerIndex) || tempArry.includes(rightIndex)) {
 
+        leftIndex = RandIndex();
         rightIndex = RandIndex();
         centerIndex = RandIndex();
     }
@@ -63,6 +75,11 @@ function renderImg() {
     photos[leftIndex].showsCounter++;
     photos[centerIndex].showsCounter++;
     photos[rightIndex].showsCounter++;
+
+    // push to the array 
+    tempArry = [];
+    tempArry.push(leftIndex, centerIndex, rightIndex);
+    console.log("temp", tempArry);
 }
 renderImg();
 
@@ -96,6 +113,14 @@ function handleUserClick(event) {
         result.appendChild(button);
         button.textContent = "show results"
 
+        // push votes and shows for the chart 
+
+        for (let i = 0; i < photos.length; i++) {
+            votesChart.push(photos[i].votes);
+            shownChart.push(photos[i].showsCounter);
+        }
+
+
         //create the list when click on button 
 
         button.addEventListener('click', makelist);
@@ -107,6 +132,8 @@ function handleUserClick(event) {
                 list.appendChild(listli);
                 listli.textContent = `${photos[i].name} has ${photos[i].votes} votes ,and was seen ${photos[i].showsCounter} times`
             }
+            chart();
+
         }
         //hide the button
         button.addEventListener('click', hideIt);
@@ -116,4 +143,42 @@ function handleUserClick(event) {
             this.style.display = 'none';
         }
     }
+}
+
+//  the chart function from the library 
+
+function chart() {
+    let ctx = document.getElementById('myChart').getContext('2d');
+    let chart = new Chart(ctx, {
+        // chart type 
+        type: 'bar',
+        data: {
+            labels: nameChart,
+
+            datasets: [
+                {
+                    label: 'votes',
+                    data: votesChart,
+                    backgroundColor: [
+                        '#c7ffd8',
+                    ],
+
+                    borderWidth: 1
+                },
+
+                {
+                    label: 'shown',
+                    data: shownChart,
+                    backgroundColor: [
+                        '#161d6f',
+                    ],
+
+                    borderWidth: 1
+                }
+
+            ]
+        },
+        options: {}
+    });
+
 }
