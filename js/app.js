@@ -190,25 +190,20 @@ function chart() {
                     backgroundColor: [
                         '#c7ffd8',
                     ],
-
                     borderWidth: 1
                 },
-
                 {
                     label: 'shown',
                     data: shownChart,
                     backgroundColor: [
                         '#161d6f',
                     ],
-
                     borderWidth: 1
                 }
-
             ]
         },
         options: {}
     });
-
 }
 
 getResult();
