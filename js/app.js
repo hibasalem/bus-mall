@@ -51,6 +51,31 @@ new Photo('wine-glass', 'img/wine-glass.jpg');
 function RandIndex() {
     return Math.floor(Math.random() * photos.length);
 }
+
+// storing in the local storage 
+
+function updateStorage() {
+    let arrayString = JSON.stringify(photos);
+    localStorage.setItem('photos', arrayString);
+
+    console.log(arrayString);
+    console.log(localStorage);
+}
+
+
+// updating the result 
+
+function getResult() {
+    let data = localStorage.getItem('photos');
+    let photosData = JSON.parse(data)
+  
+    if (photosData !== null) {
+        photos = photosData;
+        console.log(photos);
+    }
+    renderImg();
+}
+
 // showing  on the photos 
 
 let tempArry = [];
@@ -106,6 +131,8 @@ function handleUserClick(event) {
         renderImg();
 
     } else {
+        updateStorage();
+
         //create the button 
         imgContanair.removeEventListener('click', handleUserClick);
         let result = document.getElementById('button');
@@ -121,6 +148,7 @@ function handleUserClick(event) {
         }
 
 
+
         //create the list when click on button 
 
         button.addEventListener('click', makelist);
@@ -133,7 +161,7 @@ function handleUserClick(event) {
                 listli.textContent = `${photos[i].name} has ${photos[i].votes} votes ,and was seen ${photos[i].showsCounter} times`
             }
             chart();
-
+            
         }
         //hide the button
         button.addEventListener('click', hideIt);
@@ -182,3 +210,5 @@ function chart() {
     });
 
 }
+
+getResult();
