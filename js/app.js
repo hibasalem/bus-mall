@@ -154,11 +154,12 @@ function handleUserClick(event) {
         button.addEventListener('click', makelist);
         function makelist() {
             let list = document.getElementById('results');
-            let listli = 0;
+           /* let listli = 0;
             for (let i = 0; i < photos.length; i++) {
                 listli = document.createElement('li');
                 list.appendChild(listli);
                 listli.textContent = `${photos[i].name} has ${photos[i].votes} votes ,and was seen ${photos[i].showsCounter} times`
+                */
             }
             chart();
             
