@@ -159,8 +159,8 @@ function handleUserClick(event) {
                 listli = document.createElement('li');
                 list.appendChild(listli);
                 listli.textContent = `${photos[i].name} has ${photos[i].votes} votes ,and was seen ${photos[i].showsCounter} times`
-                */
-            }
+               
+            } */
             chart();
             
         }
