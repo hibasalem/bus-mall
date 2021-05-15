@@ -76,9 +76,10 @@ function getResult() {
     renderImg();
 }
 
-// showing  on the photos 
-
+// for the chart
 let tempArry = [];
+
+// showing  on the photos 
 
 function renderImg() {
 
